@@ -1,0 +1,130 @@
+/* Customer Portal — Indigo Brand Theme (Light Only) */
+
+html {
+    font-size: 14px;
+    scroll-behavior: smooth;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    min-height: 100vh;
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    color: #1e1b4b;
+    background: #f8f7ff;
+}
+
+/* Display font utility */
+.font-display {
+    font-family: 'Plus Jakarta Sans', sans-serif;
+}
+
+/* Selection color */
+::selection {
+    background: rgba(51, 0, 204, 0.15);
+    color: inherit;
+}
+
+/* --- Animations --- */
+@media (prefers-reduced-motion: no-preference) {
+    @keyframes fadeInUp {
+        from {
+            opacity: 0;
+            transform: translateY(16px);
+        }
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+
+    @keyframes fadeIn {
+        from { opacity: 0; }
+        to { opacity: 1; }
+    }
+
+    .animate-fade-in-up {
+        animation: fadeInUp 0.4s ease-out both;
+    }
+
+    .animate-fade-in {
+        animation: fadeIn 0.3s ease-out both;
+    }
+
+    .animate-stagger-item {
+        animation: fadeInUp 0.4s ease-out both;
+        animation-delay: calc(var(--i, 0) * 80ms);
+    }
+
+    /* Page transitions */
+    .page-fade-enter-active {
+        animation: fadeInUp 0.3s ease-out;
+    }
+    .page-fade-leave-active {
+        animation: fadeIn 0.15s ease-in reverse;
+    }
+}
+
+/* --- PrimeVue Overrides --- */
+
+/* DataTable: clean row borders */
+.p-datatable .p-datatable-tbody > tr {
+    border-bottom: 1px solid rgba(51, 0, 204, 0.06);
+}
+.p-datatable .p-datatable-tbody > tr:hover {
+    background: rgba(51, 0, 204, 0.03) !important;
+}
+
+/* Button primary: rounded */
+.p-button.p-button-primary,
+.p-button:not(.p-button-outlined):not(.p-button-text):not(.p-button-link) {
+    border-radius: 0.5rem;
+}
+
+/* Tag: slightly smaller radius */
+.p-tag {
+    border-radius: 0.375rem;
+    font-weight: 600;
+    font-size: 0.72rem;
+    letter-spacing: 0.02em;
+}
+
+/* Input focus: indigo ring */
+.p-inputtext:focus,
+.p-select:focus,
+.p-textarea:focus {
+    box-shadow: 0 0 0 2px rgba(51, 0, 204, 0.2);
+    border-color: #3300cc;
+}
+
+/* Toast styling */
+.p-toast .p-toast-message {
+    border-radius: 0.5rem;
+}
+
+/* Scrollbar subtle styling */
+::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+}
+::-webkit-scrollbar-track {
+    background: transparent;
+}
+::-webkit-scrollbar-thumb {
+    background: rgba(51, 0, 204, 0.15);
+    border-radius: 3px;
+}
+::-webkit-scrollbar-thumb:hover {
+    background: rgba(51, 0, 204, 0.3);
+}
+
+/* Card hover lift */
+.card-hover-lift {
+    transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+.card-hover-lift:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 24px rgba(51, 0, 204, 0.08);
+}

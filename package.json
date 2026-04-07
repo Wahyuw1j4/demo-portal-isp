@@ -1,0 +1,32 @@
+{
+  "name": "demo-biiling-billing-portal",
+  "private": true,
+  "version": "1.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview"
+  },
+  "dependencies": {
+    "@primeuix/themes": "^1.0.0",
+    "axios": "^1.11.0",
+    "pinia": "^3.0.3",
+    "pinia-plugin-persistedstate": "^4.5.0",
+    "primeicons": "^7.0.0",
+    "primevue": "^4.3.1",
+    "tailwindcss-primeui": "^0.5.0",
+    "vue": "^3.4.34",
+    "vue-router": "^4.4.0"
+  },
+  "devDependencies": {
+    "@primevue/auto-import-resolver": "^4.3.1",
+    "@vitejs/plugin-vue": "^5.0.5",
+    "autoprefixer": "^10.4.19",
+    "postcss": "^8.4.40",
+    "sass": "^1.93.3",
+    "tailwindcss": "^3.4.6",
+    "unplugin-vue-components": "^0.27.3",
+    "vite": "^5.3.1"
+  }
+}
