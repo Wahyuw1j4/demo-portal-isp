@@ -1,12 +1,24 @@
 <script setup>
+import { computed, onMounted, ref } from 'vue';
 import { useAuthStore } from '@/stores/auth';
+import { useCompanySettingsStore } from '@/stores/companySettings';
 import { useRouter, useRoute } from 'vue-router';
-import { ref } from 'vue';
 
 const auth = useAuthStore();
+const company = useCompanySettingsStore();
 const router = useRouter();
 const route = useRoute();
 const mobileMenuOpen = ref(false);
+
+const topbarLogo = computed(() => company.displayIcon);
+
+function onLogoError(event) {
+    event.target.src = '/logo.png';
+}
+
+onMounted(() => {
+    company.load();
+});
 
 const navItems = [
     { label: 'Langganan', icon: 'pi pi-wifi', to: '/subscriptions' },
@@ -34,7 +46,7 @@ function navigateMobile(to) {
         <div class="topbar-inner">
             <!-- Left: Logo -->
             <router-link to="/" class="topbar-logo-link">
-                <img src="/logo.png" alt="Logo" class="topbar-logo" />
+                <img :src="topbarLogo" :alt="company.displayName" class="topbar-logo" @error="onLogoError" />
             </router-link>
 
             <!-- Center: Desktop Nav -->
