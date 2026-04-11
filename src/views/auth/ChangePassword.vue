@@ -97,7 +97,7 @@ async function handleChange() {
     display: none;
     position: relative;
     width: 45%;
-    background: linear-gradient(135deg, #365314 0%, #3f6212 40%, #65a30d 100%);
+    background: linear-gradient(135deg, #4b735b 0%, #58886a 40%, #79b88c 100%);
     overflow: hidden;
 }
 @media (min-width: 992px) {
@@ -113,7 +113,7 @@ async function handleChange() {
 
 .chpw-deco-icon {
     font-size: 2.5rem;
-    color: #a3e635;
+    color: #abd9b7;
     margin-bottom: 1.5rem;
     display: block;
 }
@@ -121,14 +121,14 @@ async function handleChange() {
 .chpw-deco-heading {
     font-size: clamp(2rem, 4vw, 3rem);
     font-weight: 700;
-    color: #ecfccb;
+    color: #eaf6ee;
     line-height: 1.1;
     margin: 0;
 }
 
 .chpw-deco-sub {
     font-size: 1rem;
-    color: rgba(236, 252, 203, 0.7);
+    color: rgba(234, 246, 238, 0.7);
     margin-top: 1rem;
     line-height: 1.6;
 }
@@ -137,8 +137,8 @@ async function handleChange() {
     position: absolute;
     inset: 0;
     background-image:
-        radial-gradient(circle at 30% 70%, rgba(132, 204, 22, 0.2) 0%, transparent 50%),
-        radial-gradient(circle at 70% 30%, rgba(236, 252, 203, 0.08) 0%, transparent 40%);
+        radial-gradient(circle at 30% 70%, rgba(146, 202, 162, 0.2) 0%, transparent 50%),
+        radial-gradient(circle at 70% 30%, rgba(234, 246, 238, 0.08) 0%, transparent 40%);
     z-index: 1;
 }
 
@@ -148,19 +148,19 @@ async function handleChange() {
     align-items: center;
     justify-content: center;
     padding: 2rem;
-    background: #f7fee7;
+    background: #f6fbf7;
 }
 .chpw-form-card {
     width: 100%;
     max-width: 400px;
     padding: 2.5rem;
     background: #ffffff;
-    border: 1px solid rgba(101, 163, 13, 0.08);
+    border: 1px solid rgba(121, 184, 140, 0.08);
     border-radius: 0.75rem;
 }
-.chpw-title { color: #1f2a14; }
-.chpw-subtitle { font-size: 0.9rem; color: #728951; }
-.chpw-label { font-size: 0.85rem; font-weight: 600; color: #3f4f2a; }
+.chpw-title { color: #2a352e; }
+.chpw-subtitle { font-size: 0.9rem; color: #7e9886; }
+.chpw-label { font-size: 0.85rem; font-weight: 600; color: #4e6358; }
 .chpw-btn {
     height: 2.75rem;
     font-weight: 600;

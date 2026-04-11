@@ -131,12 +131,12 @@ onMounted(async () => {
 </template>
 
 <style scoped>
-.page-title { color: #1f2a14; }
-.page-meta { color: #728951; }
+.page-title { color: #2a352e; }
+.page-meta { color: #7e9886; }
 
 .portal-card {
     background: #ffffff;
-    border: 1px solid rgba(101, 163, 13, 0.08);
+    border: 1px solid rgba(121, 184, 140, 0.08);
     border-radius: 0.75rem;
     padding: 1.5rem;
 }
@@ -147,22 +147,22 @@ onMounted(async () => {
     justify-content: center;
     width: 2.25rem;
     height: 2.25rem;
-    border: 1px solid rgba(101, 163, 13, 0.1);
+    border: 1px solid rgba(121, 184, 140, 0.1);
     background: #ffffff;
-    color: #55693a;
+    color: #667e70;
     border-radius: 0.5rem;
     cursor: pointer;
     transition: background 0.15s, color 0.15s;
 }
-.back-btn:hover { background: rgba(101, 163, 13, 0.05); color: #65a30d; }
+.back-btn:hover { background: rgba(121, 184, 140, 0.05); color: #79b88c; }
 
 .portal-link {
-    color: #65a30d;
+    color: #79b88c;
     text-decoration: none;
     font-weight: 600;
     transition: color 0.15s;
 }
-.portal-link:hover { color: #4d7c0f; }
+.portal-link:hover { color: #679f79; }
 
 /* Info Grid */
 .info-grid {
@@ -174,51 +174,51 @@ onMounted(async () => {
 
 .info-item {
     padding: 0.5rem 0;
-    border-bottom: 1px solid rgba(101, 163, 13, 0.05);
+    border-bottom: 1px solid rgba(121, 184, 140, 0.05);
 }
 
 .info-label {
     font-size: 0.78rem;
     font-weight: 500;
-    color: #728951;
+    color: #7e9886;
     margin-bottom: 0.2rem;
 }
 
 .info-value {
     font-size: 0.95rem;
     font-weight: 600;
-    color: #1f2a14;
+    color: #2a352e;
 }
 
 /* Customer Report Blockquote */
 .customer-report {
-    border-left: 3px solid #65a30d;
+    border-left: 3px solid #79b88c;
     padding-left: 1rem;
-    color: #3f4f2a;
+    color: #4e6358;
 }
 
 /* Technician Card */
 .technician-card {
-    border-left: 3px solid #84cc16;
+    border-left: 3px solid #92caa2;
 }
-.tech-text { color: #3f4f2a; }
+.tech-text { color: #4e6358; }
 
 /* Timeline */
 .timeline-indigo :deep(.p-timeline-event-connector) {
-    background: #65a30d !important;
+    background: #79b88c !important;
     opacity: 0.3;
 }
 .timeline-indigo :deep(.p-timeline-event-marker) {
-    border-color: #65a30d !important;
-    background: #65a30d !important;
+    border-color: #79b88c !important;
+    background: #79b88c !important;
 }
-.timeline-msg { color: #1f2a14; }
+.timeline-msg { color: #2a352e; }
 
 /* Photos */
 .ticket-photo {
     max-width: 320px;
     border-radius: 0.75rem;
-    border: 1px solid rgba(101, 163, 13, 0.08);
+    border: 1px solid rgba(121, 184, 140, 0.08);
 }
 
 .ticket-photo-thumb {
@@ -226,7 +226,7 @@ onMounted(async () => {
     height: 8rem;
     object-fit: cover;
     border-radius: 0.75rem;
-    border: 1px solid rgba(101, 163, 13, 0.08);
+    border: 1px solid rgba(121, 184, 140, 0.08);
     transition: transform 0.15s ease;
     cursor: pointer;
 }

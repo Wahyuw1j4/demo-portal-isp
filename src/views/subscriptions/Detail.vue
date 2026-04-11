@@ -175,7 +175,7 @@ onMounted(loadData);
 </template>
 
 <style scoped>
-.page-title { color: #1f2a14; }
+.page-title { color: #2a352e; }
 
 .detail-wrap {
     max-width: 680px;
@@ -188,18 +188,18 @@ onMounted(loadData);
     justify-content: center;
     width: 2.25rem;
     height: 2.25rem;
-    border: 1px solid rgba(101, 163, 13, 0.1);
+    border: 1px solid rgba(121, 184, 140, 0.1);
     background: #ffffff;
-    color: #55693a;
+    color: #667e70;
     border-radius: 0.5rem;
     cursor: pointer;
     transition: background 0.15s, color 0.15s;
 }
-.back-btn:hover { background: rgba(101, 163, 13, 0.05); color: #65a30d; }
+.back-btn:hover { background: rgba(121, 184, 140, 0.05); color: #79b88c; }
 
 .portal-card {
     background: #ffffff;
-    border: 1px solid rgba(101, 163, 13, 0.08);
+    border: 1px solid rgba(121, 184, 140, 0.08);
     border-radius: 0.75rem;
     padding: 1.25rem 1.5rem;
 }
@@ -218,20 +218,20 @@ onMounted(loadData);
     width: 3.5rem;
     height: 3.5rem;
     border-radius: 0.75rem;
-    background: rgba(101, 163, 13, 0.08);
+    background: rgba(121, 184, 140, 0.08);
     flex-shrink: 0;
 }
 
 .profile-icon {
     font-size: 1.4rem;
-    color: #65a30d;
+    color: #79b88c;
 }
 
 .profile-body { flex: 1; min-width: 0; }
 
 .profile-id {
     font-size: 0.8rem;
-    color: #728951;
+    color: #7e9886;
     margin-top: 0.25rem;
     font-weight: 500;
     letter-spacing: 0.02em;
@@ -243,7 +243,7 @@ onMounted(loadData);
     align-items: center;
     justify-content: space-between;
     padding: 0.85rem 0;
-    border-bottom: 1px solid rgba(101, 163, 13, 0.05);
+    border-bottom: 1px solid rgba(121, 184, 140, 0.05);
     gap: 1rem;
 }
 .info-row.last { border-bottom: none; }
@@ -253,14 +253,14 @@ onMounted(loadData);
     align-items: center;
     gap: 0.5rem;
     font-size: 0.85rem;
-    color: #728951;
+    color: #7e9886;
     font-weight: 500;
 }
-.info-label i { font-size: 0.8rem; color: #a3e635; }
+.info-label i { font-size: 0.8rem; color: #abd9b7; }
 
 .info-value {
     font-size: 0.9rem;
-    color: #1f2a14;
+    color: #2a352e;
     text-align: right;
 }
 
@@ -271,7 +271,7 @@ onMounted(loadData);
     gap: 1rem;
     padding: 0.9rem 1.25rem;
     background: #ffffff;
-    border: 1px solid rgba(101, 163, 13, 0.08);
+    border: 1px solid rgba(121, 184, 140, 0.08);
     border-radius: 0.75rem;
     cursor: pointer;
     text-align: left;
@@ -279,8 +279,8 @@ onMounted(loadData);
     transition: border-color 0.15s, background 0.15s;
 }
 .invoice-card:hover {
-    border-color: rgba(101, 163, 13, 0.2);
-    background: rgba(101, 163, 13, 0.02);
+    border-color: rgba(121, 184, 140, 0.2);
+    background: rgba(121, 184, 140, 0.02);
 }
 
 .invoice-left { flex: 1; min-width: 0; }
@@ -288,12 +288,12 @@ onMounted(loadData);
 .invoice-no {
     font-size: 0.88rem;
     font-weight: 600;
-    color: #65a30d;
+    color: #79b88c;
 }
 
 .invoice-date {
     font-size: 0.78rem;
-    color: #728951;
+    color: #7e9886;
     margin-top: 0.15rem;
 }
 
@@ -313,26 +313,26 @@ onMounted(loadData);
 .invoice-amount {
     font-size: 0.9rem;
     font-weight: 700;
-    color: #1f2a14;
+    color: #2a352e;
 }
 
 .invoice-tag { font-size: 0.68rem !important; }
 
 .invoice-arrow {
     font-size: 0.78rem;
-    color: #bef264;
+    color: #c4e4cc;
     flex-shrink: 0;
     transition: color 0.15s;
 }
-.invoice-card:hover .invoice-arrow { color: #65a30d; }
+.invoice-card:hover .invoice-arrow { color: #79b88c; }
 
 .empty-invoices {
     padding: 1.5rem;
     text-align: center;
-    color: #728951;
+    color: #7e9886;
     font-size: 0.88rem;
     background: #ffffff;
-    border: 1px solid rgba(101, 163, 13, 0.06);
+    border: 1px solid rgba(121, 184, 140, 0.06);
     border-radius: 0.75rem;
 }
 </style>

@@ -1,4 +1,4 @@
-/* Customer Portal — Lime Brand Theme (Light Only) */
+/* Customer Portal — Pastel Green Theme (Light Only) */
 
 html {
     font-size: 14px;
@@ -12,8 +12,8 @@ body {
     font-family: 'Plus Jakarta Sans', sans-serif;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
-    color: #1f2a14;
-    background: #f7fee7;
+    color: #2a352e;
+    background: #f6fbf7;
 }
 
 /* Display font utility */
@@ -23,7 +23,7 @@ body {
 
 /* Selection color */
 ::selection {
-    background: rgba(101, 163, 13, 0.15);
+    background: rgba(121, 184, 140, 0.15);
     color: inherit;
 }
 
@@ -71,10 +71,10 @@ body {
 
 /* DataTable: clean row borders */
 .p-datatable .p-datatable-tbody > tr {
-    border-bottom: 1px solid rgba(101, 163, 13, 0.06);
+    border-bottom: 1px solid rgba(121, 184, 140, 0.06);
 }
 .p-datatable .p-datatable-tbody > tr:hover {
-    background: rgba(101, 163, 13, 0.03) !important;
+    background: rgba(121, 184, 140, 0.03) !important;
 }
 
 /* Button primary: rounded */
@@ -95,8 +95,8 @@ body {
 .p-inputtext:focus,
 .p-select:focus,
 .p-textarea:focus {
-    box-shadow: 0 0 0 2px rgba(101, 163, 13, 0.2);
-    border-color: #65a30d;
+    box-shadow: 0 0 0 2px rgba(121, 184, 140, 0.2);
+    border-color: #79b88c;
 }
 
 /* Toast styling */
@@ -113,11 +113,11 @@ body {
     background: transparent;
 }
 ::-webkit-scrollbar-thumb {
-    background: rgba(101, 163, 13, 0.15);
+    background: rgba(121, 184, 140, 0.15);
     border-radius: 3px;
 }
 ::-webkit-scrollbar-thumb:hover {
-    background: rgba(101, 163, 13, 0.3);
+    background: rgba(121, 184, 140, 0.3);
 }
 
 /* Card hover lift */
@@ -126,5 +126,5 @@ body {
 }
 .card-hover-lift:hover {
     transform: translateY(-2px);
-    box-shadow: 0 8px 24px rgba(101, 163, 13, 0.08);
+    box-shadow: 0 8px 24px rgba(121, 184, 140, 0.08);
 }

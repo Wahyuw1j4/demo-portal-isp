@@ -165,8 +165,8 @@ async function handleChangePassword() {
 </template>
 
 <style scoped>
-.page-title { color: #1f2a14; }
-.page-meta { color: #728951; }
+.page-title { color: #2a352e; }
+.page-meta { color: #7e9886; }
 
 .profile-wrap {
     max-width: 680px;
@@ -181,13 +181,13 @@ async function handleChangePassword() {
 
 .portal-card {
     background: #ffffff;
-    border: 1px solid rgba(101, 163, 13, 0.08);
+    border: 1px solid rgba(121, 184, 140, 0.08);
     border-radius: 0.75rem;
     padding: 1.5rem;
 }
 
 .portal-card--password {
-    border-left: 3px solid #84cc16;
+    border-left: 3px solid #92caa2;
 }
 
 .profile-avatar {
@@ -197,7 +197,7 @@ async function handleChangePassword() {
     width: 3.5rem;
     height: 3.5rem;
     border-radius: 50%;
-    background: #65a30d;
+    background: #79b88c;
     color: #ffffff;
     font-size: 1.1rem;
     font-weight: 700;
@@ -208,7 +208,7 @@ async function handleChangePassword() {
 .form-label {
     font-size: 0.85rem;
     font-weight: 600;
-    color: #3f4f2a;
+    color: #4e6358;
 }
 
 .disabled-input {

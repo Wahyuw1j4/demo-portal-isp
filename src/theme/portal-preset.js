@@ -4,39 +4,39 @@ import Aura from '@primeuix/themes/aura';
 const PortalPreset = definePreset(Aura, {
     semantic: {
         primary: {
-            50: '#f7fee7',
-            100: '#ecfccb',
-            200: '#d9f99d',
-            300: '#bef264',
-            400: '#a3e635',
-            500: '#84cc16',
-            600: '#65a30d',
-            700: '#4d7c0f',
-            800: '#3f6212',
-            900: '#365314',
-            950: '#1a2e05'
+            50: '#f6fbf7',
+            100: '#eaf6ee',
+            200: '#d8ecde',
+            300: '#c4e4cc',
+            400: '#abd9b7',
+            500: '#92caa2',
+            600: '#79b88c',
+            700: '#679f79',
+            800: '#58886a',
+            900: '#4b735b',
+            950: '#2f4a39'
         },
         colorScheme: {
             light: {
                 primary: {
-                    color: '#65a30d',
+                    color: '#79b88c',
                     inverseColor: '#ffffff',
-                    hoverColor: '#4d7c0f',
-                    activeColor: '#3f6212'
+                    hoverColor: '#679f79',
+                    activeColor: '#58886a'
                 },
                 surface: {
                     0: '#ffffff',
-                    50: '#f7fee7',
-                    100: '#ecfccb',
-                    200: '#dbe9c2',
-                    300: '#c2d4a0',
-                    400: '#93ab6e',
-                    500: '#728951',
-                    600: '#55693a',
-                    700: '#3f4f2a',
-                    800: '#2b351d',
-                    900: '#1f2a14',
-                    950: '#1a2412'
+                    50: '#f6fbf7',
+                    100: '#eaf6ee',
+                    200: '#d5e6da',
+                    300: '#bfd4c4',
+                    400: '#9db9a5',
+                    500: '#7e9886',
+                    600: '#667e70',
+                    700: '#4e6358',
+                    800: '#39493f',
+                    900: '#2a352e',
+                    950: '#1f2923'
                 }
             }
         }
