@@ -4,39 +4,39 @@ import Aura from '@primeuix/themes/aura';
 const PortalPreset = definePreset(Aura, {
     semantic: {
         primary: {
-            50: '#f0edff',
-            100: '#ddd6fe',
-            200: '#c4b5fd',
-            300: '#a78bfa',
-            400: '#7c5ce8',
-            500: '#5a2dcf',
-            600: '#4318d1',
-            700: '#3300cc',
-            800: '#2900a3',
-            900: '#1f007d',
-            950: '#13004d'
+            50: '#f7fee7',
+            100: '#ecfccb',
+            200: '#d9f99d',
+            300: '#bef264',
+            400: '#a3e635',
+            500: '#84cc16',
+            600: '#65a30d',
+            700: '#4d7c0f',
+            800: '#3f6212',
+            900: '#365314',
+            950: '#1a2e05'
         },
         colorScheme: {
             light: {
                 primary: {
-                    color: '#3300cc',
+                    color: '#65a30d',
                     inverseColor: '#ffffff',
-                    hoverColor: '#2900a3',
-                    activeColor: '#1f007d'
+                    hoverColor: '#4d7c0f',
+                    activeColor: '#3f6212'
                 },
                 surface: {
                     0: '#ffffff',
-                    50: '#f8f7ff',
-                    100: '#f0edff',
-                    200: '#e0dbf5',
-                    300: '#c8c2e0',
-                    400: '#9f97c0',
-                    500: '#7a7298',
-                    600: '#5c5577',
-                    700: '#433d5c',
-                    800: '#2e2944',
-                    900: '#1e1b4b',
-                    950: '#13104a'
+                    50: '#f7fee7',
+                    100: '#ecfccb',
+                    200: '#dbe9c2',
+                    300: '#c2d4a0',
+                    400: '#93ab6e',
+                    500: '#728951',
+                    600: '#55693a',
+                    700: '#3f4f2a',
+                    800: '#2b351d',
+                    900: '#1f2a14',
+                    950: '#1a2412'
                 }
             }
         }

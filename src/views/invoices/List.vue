@@ -146,7 +146,7 @@ onUnmounted(() => { if (observer) observer.disconnect(); });
 </template>
 
 <style scoped>
-.page-title { color: #1e1b4b; }
+.page-title { color: #1f2a14; }
 
 .inv-skeleton {
     display: flex;
@@ -154,7 +154,7 @@ onUnmounted(() => { if (observer) observer.disconnect(); });
     align-items: center;
     padding: 1rem 1.25rem;
     background: #ffffff;
-    border: 1px solid rgba(51, 0, 204, 0.06);
+    border: 1px solid rgba(101, 163, 13, 0.06);
     border-radius: 0.75rem;
     gap: 1rem;
 }
@@ -165,7 +165,7 @@ onUnmounted(() => { if (observer) observer.disconnect(); });
     gap: 1rem;
     padding: 0.9rem 1.25rem;
     background: #ffffff;
-    border: 1px solid rgba(51, 0, 204, 0.08);
+    border: 1px solid rgba(101, 163, 13, 0.08);
     border-radius: 0.75rem;
     cursor: pointer;
     text-align: left;
@@ -173,8 +173,8 @@ onUnmounted(() => { if (observer) observer.disconnect(); });
     transition: border-color 0.15s, background 0.15s;
 }
 .inv-card:hover {
-    border-color: rgba(51, 0, 204, 0.2);
-    background: rgba(51, 0, 204, 0.015);
+    border-color: rgba(101, 163, 13, 0.2);
+    background: rgba(101, 163, 13, 0.015);
 }
 
 .inv-left { flex: 1; min-width: 0; }
@@ -182,15 +182,15 @@ onUnmounted(() => { if (observer) observer.disconnect(); });
 .inv-no {
     font-size: 0.88rem;
     font-weight: 600;
-    color: #3300cc;
+    color: #65a30d;
 }
 
 .inv-date {
     font-size: 0.78rem;
-    color: #7a7298;
+    color: #728951;
     margin-top: 0.15rem;
 }
-.inv-due { color: #a78bfa; }
+.inv-due { color: #a3e635; }
 
 .inv-right {
     display: flex;
@@ -203,27 +203,27 @@ onUnmounted(() => { if (observer) observer.disconnect(); });
 .inv-amount {
     font-size: 0.92rem;
     font-weight: 700;
-    color: #1e1b4b;
+    color: #1f2a14;
 }
 
 .inv-tag { font-size: 0.68rem !important; }
 
 .inv-arrow {
     font-size: 0.78rem;
-    color: #c4b5fd;
+    color: #bef264;
     flex-shrink: 0;
     transition: color 0.15s;
 }
-.inv-card:hover .inv-arrow { color: #3300cc; }
+.inv-card:hover .inv-arrow { color: #65a30d; }
 
 .empty-state {
     text-align: center;
     padding: 4rem 2rem;
-    color: #7a7298;
+    color: #728951;
 }
 .empty-icon {
     font-size: 2.5rem;
-    color: #c4b5fd;
+    color: #bef264;
     margin-bottom: 1rem;
     display: block;
 }
@@ -233,13 +233,13 @@ onUnmounted(() => { if (observer) observer.disconnect(); });
     display: flex;
     justify-content: center;
     padding: 1.5rem;
-    color: #7a7298;
+    color: #728951;
     font-size: 1.2rem;
 }
 .end-label {
     text-align: center;
     padding: 1rem;
     font-size: 0.8rem;
-    color: #c4b5fd;
+    color: #bef264;
 }
 </style>

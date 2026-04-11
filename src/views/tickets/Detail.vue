@@ -131,12 +131,12 @@ onMounted(async () => {
 </template>
 
 <style scoped>
-.page-title { color: #1e1b4b; }
-.page-meta { color: #7a7298; }
+.page-title { color: #1f2a14; }
+.page-meta { color: #728951; }
 
 .portal-card {
     background: #ffffff;
-    border: 1px solid rgba(51, 0, 204, 0.08);
+    border: 1px solid rgba(101, 163, 13, 0.08);
     border-radius: 0.75rem;
     padding: 1.5rem;
 }
@@ -147,22 +147,22 @@ onMounted(async () => {
     justify-content: center;
     width: 2.25rem;
     height: 2.25rem;
-    border: 1px solid rgba(51, 0, 204, 0.1);
+    border: 1px solid rgba(101, 163, 13, 0.1);
     background: #ffffff;
-    color: #5c5577;
+    color: #55693a;
     border-radius: 0.5rem;
     cursor: pointer;
     transition: background 0.15s, color 0.15s;
 }
-.back-btn:hover { background: rgba(51, 0, 204, 0.05); color: #3300cc; }
+.back-btn:hover { background: rgba(101, 163, 13, 0.05); color: #65a30d; }
 
 .portal-link {
-    color: #3300cc;
+    color: #65a30d;
     text-decoration: none;
     font-weight: 600;
     transition: color 0.15s;
 }
-.portal-link:hover { color: #2900a3; }
+.portal-link:hover { color: #4d7c0f; }
 
 /* Info Grid */
 .info-grid {
@@ -174,51 +174,51 @@ onMounted(async () => {
 
 .info-item {
     padding: 0.5rem 0;
-    border-bottom: 1px solid rgba(51, 0, 204, 0.05);
+    border-bottom: 1px solid rgba(101, 163, 13, 0.05);
 }
 
 .info-label {
     font-size: 0.78rem;
     font-weight: 500;
-    color: #7a7298;
+    color: #728951;
     margin-bottom: 0.2rem;
 }
 
 .info-value {
     font-size: 0.95rem;
     font-weight: 600;
-    color: #1e1b4b;
+    color: #1f2a14;
 }
 
 /* Customer Report Blockquote */
 .customer-report {
-    border-left: 3px solid #3300cc;
+    border-left: 3px solid #65a30d;
     padding-left: 1rem;
-    color: #433d5c;
+    color: #3f4f2a;
 }
 
 /* Technician Card */
 .technician-card {
-    border-left: 3px solid #7c5ce8;
+    border-left: 3px solid #84cc16;
 }
-.tech-text { color: #433d5c; }
+.tech-text { color: #3f4f2a; }
 
 /* Timeline */
 .timeline-indigo :deep(.p-timeline-event-connector) {
-    background: #3300cc !important;
+    background: #65a30d !important;
     opacity: 0.3;
 }
 .timeline-indigo :deep(.p-timeline-event-marker) {
-    border-color: #3300cc !important;
-    background: #3300cc !important;
+    border-color: #65a30d !important;
+    background: #65a30d !important;
 }
-.timeline-msg { color: #1e1b4b; }
+.timeline-msg { color: #1f2a14; }
 
 /* Photos */
 .ticket-photo {
     max-width: 320px;
     border-radius: 0.75rem;
-    border: 1px solid rgba(51, 0, 204, 0.08);
+    border: 1px solid rgba(101, 163, 13, 0.08);
 }
 
 .ticket-photo-thumb {
@@ -226,7 +226,7 @@ onMounted(async () => {
     height: 8rem;
     object-fit: cover;
     border-radius: 0.75rem;
-    border: 1px solid rgba(51, 0, 204, 0.08);
+    border: 1px solid rgba(101, 163, 13, 0.08);
     transition: transform 0.15s ease;
     cursor: pointer;
 }

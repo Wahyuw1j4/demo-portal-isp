@@ -17,7 +17,7 @@ import AppTopbar from './AppTopbar.vue';
 
 <style scoped>
 .portal-main {
-    background: #f8f7ff;
+    background: #f7fee7;
     min-height: calc(100vh - 3.5rem);
 }
 </style>

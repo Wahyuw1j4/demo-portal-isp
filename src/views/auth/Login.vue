@@ -90,7 +90,7 @@ async function handleLogin() {
     display: none;
     position: relative;
     width: 45%;
-    background: linear-gradient(135deg, #13004d 0%, #1f007d 40%, #3300cc 100%);
+    background: linear-gradient(135deg, #365314 0%, #3f6212 40%, #65a30d 100%);
     overflow: hidden;
 }
 @media (min-width: 992px) {
@@ -108,22 +108,22 @@ async function handleLogin() {
     width: 12px;
     height: 12px;
     border-radius: 50%;
-    background: #a78bfa;
+    background: #a3e635;
     margin-bottom: 1.5rem;
-    box-shadow: 0 0 20px rgba(167, 139, 250, 0.4);
+    box-shadow: 0 0 20px rgba(163, 230, 53, 0.4);
 }
 
 .login-deco-heading {
     font-size: clamp(2rem, 4vw, 3rem);
     font-weight: 700;
-    color: #f0edff;
+    color: #ecfccb;
     line-height: 1.1;
     margin: 0;
 }
 
 .login-deco-sub {
     font-size: 1rem;
-    color: rgba(240, 237, 255, 0.7);
+    color: rgba(236, 252, 203, 0.7);
     margin-top: 1rem;
     line-height: 1.6;
 }
@@ -132,8 +132,8 @@ async function handleLogin() {
     position: absolute;
     inset: 0;
     background-image:
-        radial-gradient(circle at 20% 80%, rgba(124, 92, 232, 0.2) 0%, transparent 50%),
-        radial-gradient(circle at 80% 20%, rgba(240, 237, 255, 0.08) 0%, transparent 40%);
+        radial-gradient(circle at 20% 80%, rgba(132, 204, 22, 0.2) 0%, transparent 50%),
+        radial-gradient(circle at 80% 20%, rgba(236, 252, 203, 0.08) 0%, transparent 40%);
     z-index: 1;
 }
 
@@ -144,27 +144,27 @@ async function handleLogin() {
     align-items: center;
     justify-content: center;
     padding: 2rem;
-    background: #f8f7ff;
+    background: #f7fee7;
 }
 .login-form-card {
     width: 100%;
     max-width: 400px;
     padding: 2.5rem;
     background: #ffffff;
-    border: 1px solid rgba(51, 0, 204, 0.08);
+    border: 1px solid rgba(101, 163, 13, 0.08);
     border-radius: 0.75rem;
 }
 .login-title {
-    color: #1e1b4b;
+    color: #1f2a14;
 }
 .login-subtitle {
     font-size: 0.9rem;
-    color: #7a7298;
+    color: #728951;
 }
 .login-label {
     font-size: 0.85rem;
     font-weight: 600;
-    color: #433d5c;
+    color: #3f4f2a;
 }
 .login-btn {
     height: 2.75rem;

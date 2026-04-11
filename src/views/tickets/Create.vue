@@ -127,12 +127,12 @@ async function handleSubmit() {
 </template>
 
 <style scoped>
-.page-title { color: #1e1b4b; }
-.page-meta { color: #7a7298; }
+.page-title { color: #1f2a14; }
+.page-meta { color: #728951; }
 
 .portal-card {
     background: #ffffff;
-    border: 1px solid rgba(51, 0, 204, 0.08);
+    border: 1px solid rgba(101, 163, 13, 0.08);
     border-radius: 0.75rem;
     padding: 1.5rem;
 }
@@ -143,19 +143,19 @@ async function handleSubmit() {
     justify-content: center;
     width: 2.25rem;
     height: 2.25rem;
-    border: 1px solid rgba(51, 0, 204, 0.1);
+    border: 1px solid rgba(101, 163, 13, 0.1);
     background: #ffffff;
-    color: #5c5577;
+    color: #55693a;
     border-radius: 0.5rem;
     cursor: pointer;
     transition: background 0.15s, color 0.15s;
 }
-.back-btn:hover { background: rgba(51, 0, 204, 0.05); color: #3300cc; }
+.back-btn:hover { background: rgba(101, 163, 13, 0.05); color: #65a30d; }
 
 .form-label {
     font-size: 0.9rem;
     font-weight: 600;
-    color: #433d5c;
+    color: #3f4f2a;
 }
 
 .submit-btn { border-radius: 0.5rem; font-weight: 600; }

@@ -165,7 +165,7 @@ onUnmounted(() => { if (observer) observer.disconnect(); });
 </template>
 
 <style scoped>
-.page-title { color: #1e1b4b; }
+.page-title { color: #1f2a14; }
 
 .create-btn { border-radius: 0.5rem; font-weight: 600; }
 
@@ -175,7 +175,7 @@ onUnmounted(() => { if (observer) observer.disconnect(); });
     gap: 0.75rem;
     padding: 0.9rem 1.25rem;
     background: #ffffff;
-    border: 1px solid rgba(51, 0, 204, 0.06);
+    border: 1px solid rgba(101, 163, 13, 0.06);
     border-radius: 0.75rem;
 }
 
@@ -185,7 +185,7 @@ onUnmounted(() => { if (observer) observer.disconnect(); });
     gap: 1rem;
     padding: 0.9rem 1.25rem;
     background: #ffffff;
-    border: 1px solid rgba(51, 0, 204, 0.08);
+    border: 1px solid rgba(101, 163, 13, 0.08);
     border-radius: 0.75rem;
     cursor: pointer;
     text-align: left;
@@ -193,8 +193,8 @@ onUnmounted(() => { if (observer) observer.disconnect(); });
     transition: border-color 0.15s, background 0.15s;
 }
 .tkt-card:hover {
-    border-color: rgba(51, 0, 204, 0.2);
-    background: rgba(51, 0, 204, 0.015);
+    border-color: rgba(101, 163, 13, 0.2);
+    background: rgba(101, 163, 13, 0.015);
 }
 
 .tkt-dot {
@@ -209,7 +209,7 @@ onUnmounted(() => { if (observer) observer.disconnect(); });
 .tkt-id {
     font-size: 0.78rem;
     font-weight: 700;
-    color: #3300cc;
+    color: #65a30d;
     letter-spacing: 0.02em;
     margin-bottom: 0.1rem;
 }
@@ -217,7 +217,7 @@ onUnmounted(() => { if (observer) observer.disconnect(); });
 .tkt-subject {
     font-size: 0.9rem;
     font-weight: 500;
-    color: #1e1b4b;
+    color: #1f2a14;
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
@@ -226,7 +226,7 @@ onUnmounted(() => { if (observer) observer.disconnect(); });
 
 .tkt-meta {
     font-size: 0.76rem;
-    color: #7a7298;
+    color: #728951;
     display: flex;
     align-items: center;
     gap: 0.35rem;
@@ -245,19 +245,19 @@ onUnmounted(() => { if (observer) observer.disconnect(); });
 
 .tkt-arrow {
     font-size: 0.75rem;
-    color: #c4b5fd;
+    color: #bef264;
     transition: color 0.15s;
 }
-.tkt-card:hover .tkt-arrow { color: #3300cc; }
+.tkt-card:hover .tkt-arrow { color: #65a30d; }
 
 .empty-state {
     text-align: center;
     padding: 4rem 2rem;
-    color: #7a7298;
+    color: #728951;
 }
 .empty-icon {
     font-size: 2.5rem;
-    color: #c4b5fd;
+    color: #bef264;
     margin-bottom: 1rem;
     display: block;
 }
@@ -267,13 +267,13 @@ onUnmounted(() => { if (observer) observer.disconnect(); });
     display: flex;
     justify-content: center;
     padding: 1.5rem;
-    color: #7a7298;
+    color: #728951;
     font-size: 1.2rem;
 }
 .end-label {
     text-align: center;
     padding: 1rem;
     font-size: 0.8rem;
-    color: #c4b5fd;
+    color: #bef264;
 }
 </style>
