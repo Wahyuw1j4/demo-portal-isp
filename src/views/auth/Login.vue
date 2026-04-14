@@ -29,7 +29,7 @@ async function handleLogin() {
         });
         auth.setAuth(data.data);
         if (data.data.mustChangePassword) {
-            router.push('/change-password');
+            router.push('/profile/password');
         } else {
             router.push('/');
         }

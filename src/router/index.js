@@ -18,7 +18,7 @@ const routes = [
         ]
     },
     { path: '/login', name: 'login', component: () => import('@/views/auth/Login.vue') },
-    { path: '/change-password', name: 'change-password', component: () => import('@/views/auth/ChangePassword.vue') }
+    { path: '/profile/password', name: 'profile-password', component: () => import('@/views/auth/ChangePassword.vue') }
 ];
 
 const router = createRouter({
@@ -38,8 +38,8 @@ router.beforeEach((to, from, next) => {
     }
 
     // Force change password redirect
-    if (auth.mustChangePassword && to.name !== 'change-password' && to.name !== 'login') {
-        return next({ name: 'change-password' });
+    if (auth.mustChangePassword && to.name !== 'profile-password' && to.name !== 'login') {
+        return next({ name: 'profile-password' });
     }
 
     next();
