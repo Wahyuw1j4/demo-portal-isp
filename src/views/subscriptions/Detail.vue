@@ -2,7 +2,7 @@
 import { ref, onMounted } from 'vue';
 import { useRoute, useRouter } from 'vue-router';
 import { useToast } from 'primevue/usetoast';
-import { get, post } from '@/service/api';
+import { get, post, put } from '@/service/api';
 import { formatIDR } from '@/utils/currency';
 import { formatDate } from '@/utils/formatTime';
 import Tag from 'primevue/tag';
@@ -10,6 +10,8 @@ import Button from 'primevue/button';
 import ConfirmDialog from 'primevue/confirmdialog';
 import { useConfirm } from 'primevue/useconfirm';
 import Skeleton from 'primevue/skeleton';
+import InputText from 'primevue/inputtext';
+import Password from 'primevue/password';
 
 const route = useRoute();
 const router = useRouter();
@@ -17,8 +19,13 @@ const toast = useToast();
 const confirm = useConfirm();
 
 const subscription = ref(null);
+const cpeInfo = ref(null);
 const loading = ref(true);
 const restarting = ref(false);
+const wifiSubmitting = ref(false);
+const wifiSsid = ref('');
+const wifiPassword = ref('');
+const showWifiForm = ref(false);
 
 function statusSeverity(status) {
     const map = { ACTIVE: 'success', 'NEW REQUEST': 'info', SUSPENDED: 'danger', SETUP: 'warn' };
@@ -47,6 +54,19 @@ async function loadData() {
         router.push('/subscriptions');
     } finally {
         loading.value = false;
+    }
+    loadCpeInfo();
+}
+
+async function loadCpeInfo() {
+    try {
+        const { data } = await get(`/subscriptions/${route.params.id}/cpe`);
+        cpeInfo.value = data.data;
+        if (cpeInfo.value?.wifi_ssid) {
+            wifiSsid.value = cpeInfo.value.wifi_ssid;
+        }
+    } catch {
+        cpeInfo.value = null;
     }
 }
 
@@ -78,6 +98,34 @@ function openInvoice(id) {
     const invoiceBaseUrl = (import.meta.env.VITE_PUBLIC_INVOICE_BASE_URL || import.meta.env.VITE_API_BASE_URL || window.location.origin).replace(/\/$/, '');
     const invoiceUrl = `${invoiceBaseUrl}/inv/${encodeURIComponent(id)}`;
     window.open(invoiceUrl, '_blank');
+}
+
+async function handleWifiSave() {
+    if (!wifiSsid.value && !wifiPassword.value) {
+        toast.add({ severity: 'warn', summary: 'Perhatian', detail: 'Isi SSID atau password', life: 3000 });
+        return;
+    }
+    if (wifiPassword.value && wifiPassword.value.length < 8) {
+        toast.add({ severity: 'warn', summary: 'Perhatian', detail: 'Password WiFi minimal 8 karakter', life: 3000 });
+        return;
+    }
+    wifiSubmitting.value = true;
+    try {
+        const payload = {};
+        if (wifiSsid.value) payload.ssid = wifiSsid.value;
+        if (wifiPassword.value) payload.password = wifiPassword.value;
+        const { data } = await put(`/subscriptions/${route.params.id}/wifi`, payload);
+        toast.add({ severity: 'success', summary: 'Berhasil', detail: 'Pengaturan WiFi diperbarui', life: 5000 });
+        showWifiForm.value = false;
+        wifiPassword.value = '';
+        if (payload.ssid) {
+            cpeInfo.value = { ...cpeInfo.value, wifi_ssid: payload.ssid };
+        }
+    } catch (err) {
+        toast.add({ severity: 'error', summary: 'Gagal', detail: err.response?.data?.message || 'Gagal menyimpan pengaturan WiFi', life: 5000 });
+    } finally {
+        wifiSubmitting.value = false;
+    }
 }
 
 onMounted(loadData);
@@ -138,6 +186,68 @@ onMounted(loadData);
                     :disabled="subscription.status !== 'ACTIVE'"
                     @click="confirmRestart"
                 />
+                <Button
+                    v-if="!showWifiForm"
+                    label="Ubah WiFi"
+                    icon="pi pi-pencil"
+                    severity="secondary"
+                    outlined
+                    :disabled="subscription.status !== 'ACTIVE'"
+                    @click="showWifiForm = true"
+                />
+            </div>
+
+            <!-- WiFi Settings Form -->
+            <div v-if="showWifiForm" class="portal-card wifi-form animate-fade-in-up">
+                <div class="flex items-center gap-2 mb-3">
+                    <i class="pi pi-wifi" style="font-size: 1rem; color: #79b88c;"></i>
+                    <h2 class="font-display text-base font-semibold page-title m-0">Pengaturan WiFi</h2>
+                </div>
+                <div class="flex flex-col gap-3">
+                    <div>
+                        <label class="wifi-label">Nama WiFi (SSID)</label>
+                        <InputText v-model="wifiSsid" placeholder="Masukkan nama WiFi" class="w-full" />
+                    </div>
+                    <div>
+                        <label class="wifi-label">Password WiFi</label>
+                        <Password v-model="wifiPassword" placeholder="Minimal 8 karakter" :feedback="false" toggleMask class="w-full" />
+                    </div>
+                    <div class="flex gap-2">
+                        <Button label="Simpan" icon="pi pi-check" :loading="wifiSubmitting" class="flex-1" @click="handleWifiSave" />
+                        <Button label="Batal" icon="pi pi-times" severity="secondary" outlined class="flex-1" @click="showWifiForm = false; wifiPassword = ''; wifiSsid = cpeInfo?.wifi_ssid || ''" />
+                    </div>
+                </div>
+            </div>
+
+            <!-- CPE Device Info (TR-069) -->
+            <div v-if="cpeInfo" class="portal-card">
+                <div class="flex items-center gap-2 mb-2">
+                    <i class="pi pi-box" style="font-size: 1rem; color: #79b88c;"></i>
+                    <h2 class="font-display text-base font-semibold page-title m-0">Perangkat (CPE)</h2>
+                    <Tag :value="cpeInfo.status" :severity="cpeInfo.status === 'online' ? 'success' : 'danger'" class="ml-2" style="font-size: 0.7rem;" />
+                </div>
+                <div class="info-row" style="--i:0">
+                    <span class="info-label"><i class="pi pi-box"></i> Model</span>
+                    <span class="info-value">{{ cpeInfo.manufacturer || '' }} {{ cpeInfo.model_name || '—' }}</span>
+                </div>
+                <div class="info-row" style="--i:1">
+                    <span class="info-label"><i class="pi pi-wifi"></i> WiFi SSID</span>
+                    <span class="info-value">{{ cpeInfo.wifi_ssid || '—' }}</span>
+                </div>
+                <div v-if="cpeInfo.rx_power != null" class="info-row" style="--i:2">
+                    <span class="info-label"><i class="pi pi-bolt"></i> RX Power</span>
+                    <span class="info-value font-semibold" :class="cpeInfo.rx_power > -25 ? 'text-green-600' : cpeInfo.rx_power > -28 ? 'text-yellow-600' : 'text-red-600'">
+                        {{ cpeInfo.rx_power.toFixed(2) }} dBm
+                    </span>
+                </div>
+                <div v-if="cpeInfo.wan_ip" class="info-row" style="--i:3">
+                    <span class="info-label"><i class="pi pi-globe"></i> WAN IP</span>
+                    <span class="info-value">{{ cpeInfo.wan_ip }}</span>
+                </div>
+                <div v-if="cpeInfo.firmware_version" class="info-row last" style="--i:4">
+                    <span class="info-label"><i class="pi pi-info-circle"></i> Firmware</span>
+                    <span class="info-value text-xs">{{ cpeInfo.firmware_version }}</span>
+                </div>
             </div>
 
             <!-- Invoice History -->
@@ -334,5 +444,22 @@ onMounted(loadData);
     background: #ffffff;
     border: 1px solid rgba(121, 184, 140, 0.06);
     border-radius: 0.75rem;
+}
+
+/* WiFi Settings */
+.wifi-label {
+    display: block;
+    font-size: 0.82rem;
+    font-weight: 500;
+    color: #7e9886;
+    margin-bottom: 0.35rem;
+}
+
+.wifi-form :deep(.p-password-input) {
+    width: 100%;
+}
+
+.wifi-form :deep(.p-password) {
+    width: 100%;
 }
 </style>
