@@ -25,6 +25,9 @@ const restarting = ref(false);
 const wifiSubmitting = ref(false);
 const wifiSsid = ref('');
 const wifiPassword = ref('');
+const wifiSsid5g = ref('');
+const wifiPassword5g = ref('');
+const applyToBoth = ref(true);
 const showWifiForm = ref(false);
 
 function statusSeverity(status) {
@@ -65,6 +68,14 @@ async function loadCpeInfo() {
         if (cpeInfo.value?.wifi_ssid) {
             wifiSsid.value = cpeInfo.value.wifi_ssid;
         }
+        if (cpeInfo.value?.wifi_ssid_5g) {
+            wifiSsid5g.value = cpeInfo.value.wifi_ssid_5g;
+        }
+        if (cpeInfo.value?.wifi_ssid_5g === undefined || cpeInfo.value?.wifi_ssid_5g === null) {
+            applyToBoth.value = true;
+        } else {
+            applyToBoth.value = false;
+        }
     } catch {
         cpeInfo.value = null;
     }
@@ -101,25 +112,41 @@ function openInvoice(id) {
 }
 
 async function handleWifiSave() {
-    if (!wifiSsid.value && !wifiPassword.value) {
+    if (!wifiSsid.value && !wifiPassword.value && !wifiSsid5g.value && !wifiPassword5g.value) {
         toast.add({ severity: 'warn', summary: 'Perhatian', detail: 'Isi SSID atau password', life: 3000 });
         return;
     }
     if (wifiPassword.value && wifiPassword.value.length < 8) {
-        toast.add({ severity: 'warn', summary: 'Perhatian', detail: 'Password WiFi minimal 8 karakter', life: 3000 });
+        toast.add({ severity: 'warn', summary: 'Perhatian', detail: 'Password WiFi 2.4GHz minimal 8 karakter', life: 3000 });
+        return;
+    }
+    if (wifiPassword5g.value && wifiPassword5g.value.length < 8) {
+        toast.add({ severity: 'warn', summary: 'Perhatian', detail: 'Password WiFi 5GHz minimal 8 karakter', life: 3000 });
         return;
     }
     wifiSubmitting.value = true;
     try {
         const payload = {};
-        if (wifiSsid.value) payload.ssid = wifiSsid.value;
-        if (wifiPassword.value) payload.password = wifiPassword.value;
+        if (wifiSsid.value) payload.ssid_2g = wifiSsid.value;
+        if (wifiPassword.value) payload.password_2g = wifiPassword.value;
+        if (!applyToBoth.value) {
+            if (wifiSsid5g.value) payload.ssid_5g = wifiSsid5g.value;
+            if (wifiPassword5g.value) payload.password_5g = wifiPassword5g.value;
+        } else {
+            payload.apply_to_both = true;
+        }
         const { data } = await put(`/subscriptions/${route.params.id}/wifi`, payload);
         toast.add({ severity: 'success', summary: 'Berhasil', detail: 'Pengaturan WiFi diperbarui', life: 5000 });
         showWifiForm.value = false;
         wifiPassword.value = '';
-        if (payload.ssid) {
-            cpeInfo.value = { ...cpeInfo.value, wifi_ssid: payload.ssid };
+        wifiPassword5g.value = '';
+        if (payload.ssid_2g) {
+            cpeInfo.value = { ...cpeInfo.value, wifi_ssid: payload.ssid_2g };
+        }
+        if (payload.ssid_5g) {
+            cpeInfo.value = { ...cpeInfo.value, wifi_ssid_5g: payload.ssid_5g };
+        } else if (payload.apply_to_both && payload.ssid_2g) {
+            cpeInfo.value = { ...cpeInfo.value, wifi_ssid_5g: payload.ssid_2g };
         }
     } catch (err) {
         toast.add({ severity: 'error', summary: 'Gagal', detail: err.response?.data?.message || 'Gagal menyimpan pengaturan WiFi', life: 5000 });
@@ -203,19 +230,52 @@ onMounted(loadData);
                     <i class="pi pi-wifi" style="font-size: 1rem; color: #79b88c;"></i>
                     <h2 class="font-display text-base font-semibold page-title m-0">Pengaturan WiFi</h2>
                 </div>
-                <div class="flex flex-col gap-3">
-                    <div>
-                        <label class="wifi-label">Nama WiFi (SSID)</label>
-                        <InputText v-model="wifiSsid" placeholder="Masukkan nama WiFi" class="w-full" />
+
+                <!-- Apply to both toggle -->
+                <div v-if="cpeInfo?.wifi_ssid_5g !== null" class="flex items-center gap-2 mb-3 p-2 rounded-lg" style="background: rgba(121,184,140,0.06);">
+                    <input type="checkbox" id="applyBoth" v-model="applyToBoth" class="accent-[#79b88c]" />
+                    <label for="applyBoth" class="text-sm text-gray-600 cursor-pointer">Terapkan ke semua band (2.4GHz & 5GHz)</label>
+                </div>
+
+                <!-- 2.4GHz Band -->
+                <div class="mb-4">
+                    <div class="flex items-center gap-2 mb-2">
+                        <Tag value="2.4 GHz" severity="success" style="font-size: 0.7rem;" />
+                        <span class="wifi-label mb-0">Band 2.4 GHz</span>
                     </div>
-                    <div>
-                        <label class="wifi-label">Password WiFi</label>
-                        <Password v-model="wifiPassword" placeholder="Minimal 8 karakter" :feedback="false" toggleMask class="w-full" />
+                    <div class="flex flex-col gap-2">
+                        <div>
+                            <label class="wifi-label">Nama WiFi (SSID)</label>
+                            <InputText v-model="wifiSsid" placeholder="Nama WiFi 2.4GHz" class="w-full" />
+                        </div>
+                        <div>
+                            <label class="wifi-label">Password WiFi</label>
+                            <Password v-model="wifiPassword" placeholder="Minimal 8 karakter" :feedback="false" toggleMask class="w-full" />
+                        </div>
                     </div>
-                    <div class="flex gap-2">
-                        <Button label="Simpan" icon="pi pi-check" :loading="wifiSubmitting" class="flex-1" @click="handleWifiSave" />
-                        <Button label="Batal" icon="pi pi-times" severity="secondary" outlined class="flex-1" @click="showWifiForm = false; wifiPassword = ''; wifiSsid = cpeInfo?.wifi_ssid || ''" />
+                </div>
+
+                <!-- 5GHz Band -->
+                <div v-if="!applyToBoth" class="mb-4">
+                    <div class="flex items-center gap-2 mb-2">
+                        <Tag value="5 GHz" severity="warn" style="font-size: 0.7rem;" />
+                        <span class="wifi-label mb-0">Band 5 GHz</span>
                     </div>
+                    <div class="flex flex-col gap-2">
+                        <div>
+                            <label class="wifi-label">Nama WiFi (SSID)</label>
+                            <InputText v-model="wifiSsid5g" placeholder="Nama WiFi 5GHz" class="w-full" />
+                        </div>
+                        <div>
+                            <label class="wifi-label">Password WiFi</label>
+                            <Password v-model="wifiPassword5g" placeholder="Minimal 8 karakter" :feedback="false" toggleMask class="w-full" />
+                        </div>
+                    </div>
+                </div>
+
+                <div class="flex gap-2">
+                    <Button label="Simpan" icon="pi pi-check" :loading="wifiSubmitting" class="flex-1" @click="handleWifiSave" />
+                    <Button label="Batal" icon="pi pi-times" severity="secondary" outlined class="flex-1" @click="showWifiForm = false; wifiPassword = ''; wifiPassword5g = ''; wifiSsid = cpeInfo?.wifi_ssid || ''; wifiSsid5g = cpeInfo?.wifi_ssid_5g || ''" />
                 </div>
             </div>
 
@@ -231,22 +291,46 @@ onMounted(loadData);
                     <span class="info-value">{{ cpeInfo.manufacturer || '' }} {{ cpeInfo.model_name || '—' }}</span>
                 </div>
                 <div class="info-row" style="--i:1">
-                    <span class="info-label"><i class="pi pi-wifi"></i> WiFi SSID</span>
+                    <span class="info-label"><i class="pi pi-wifi"></i> WiFi 2.4 GHz</span>
                     <span class="info-value">{{ cpeInfo.wifi_ssid || '—' }}</span>
                 </div>
-                <div v-if="cpeInfo.rx_power != null" class="info-row" style="--i:2">
+                <div v-if="cpeInfo.wifi_ssid_5g !== null && cpeInfo.wifi_ssid_5g !== undefined" class="info-row" style="--i:2">
+                    <span class="info-label"><i class="pi pi-wifi"></i> WiFi 5 GHz</span>
+                    <span class="info-value">{{ cpeInfo.wifi_ssid_5g || '—' }}</span>
+                </div>
+                <div v-if="cpeInfo.rx_power != null" class="info-row" style="--i:3">
                     <span class="info-label"><i class="pi pi-bolt"></i> RX Power</span>
                     <span class="info-value font-semibold" :class="cpeInfo.rx_power > -25 ? 'text-green-600' : cpeInfo.rx_power > -28 ? 'text-yellow-600' : 'text-red-600'">
                         {{ cpeInfo.rx_power.toFixed(2) }} dBm
                     </span>
                 </div>
-                <div v-if="cpeInfo.wan_ip" class="info-row" style="--i:3">
+                <div v-if="cpeInfo.wan_ip" class="info-row" style="--i:4">
                     <span class="info-label"><i class="pi pi-globe"></i> WAN IP</span>
                     <span class="info-value">{{ cpeInfo.wan_ip }}</span>
                 </div>
-                <div v-if="cpeInfo.firmware_version" class="info-row last" style="--i:4">
+                <div v-if="cpeInfo.firmware_version" class="info-row last" style="--i:5">
                     <span class="info-label"><i class="pi pi-info-circle"></i> Firmware</span>
                     <span class="info-value text-xs">{{ cpeInfo.firmware_version }}</span>
+                </div>
+            </div>
+
+            <!-- Connected Devices -->
+            <div v-if="cpeInfo?.connected_hosts?.length" class="portal-card">
+                <div class="flex items-center gap-2 mb-2">
+                    <i class="pi pi-users" style="font-size: 1rem; color: #79b88c;"></i>
+                    <h2 class="font-display text-base font-semibold page-title m-0">Perangkat Terhubung</h2>
+                    <Tag :value="cpeInfo.connected_hosts.length" severity="info" class="ml-2" style="font-size: 0.7rem;" />
+                </div>
+                <div v-for="(host, idx) in cpeInfo.connected_hosts" :key="idx" class="host-row" :class="{ last: idx === cpeInfo.connected_hosts.length - 1 }">
+                    <div class="host-info">
+                        <span class="host-name">{{ host.hostname || 'Unknown' }}</span>
+                        <span class="host-meta">{{ host.ip || '—' }}</span>
+                    </div>
+                    <div class="host-meta-end">
+                        <span class="host-mac">{{ host.mac || '—' }}</span>
+                        <Tag v-if="host.active" value="Online" severity="success" style="font-size: 0.65rem;" />
+                        <Tag v-else value="Offline" severity="danger" style="font-size: 0.65rem;" />
+                    </div>
                 </div>
             </div>
 
@@ -462,4 +546,22 @@ onMounted(loadData);
 .wifi-form :deep(.p-password) {
     width: 100%;
 }
+
+/* Host list */
+.host-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0.65rem 0;
+    border-bottom: 1px solid rgba(121, 184, 140, 0.05);
+    gap: 0.5rem;
+}
+.host-row.last { border-bottom: none; }
+
+.host-info { display: flex; flex-direction: column; min-width: 0; }
+.host-name { font-size: 0.85rem; font-weight: 500; color: #2a352e; }
+.host-meta { font-size: 0.75rem; color: #7e9886; }
+
+.host-meta-end { display: flex; align-items: center; gap: 0.5rem; }
+.host-mac { font-size: 0.72rem; color: #7e9886; font-family: monospace; }
 </style>
