@@ -1,4 +1,5 @@
 import axios from 'axios';
+import { useAuthStore } from '@/stores/auth';
 
 const api = axios.create({
     baseURL: `${import.meta.env.VITE_API_BASE_URL}/api/customer-portal`,
@@ -15,14 +16,27 @@ api.interceptors.request.use((config) => {
     return config;
 });
 
-// Handle 401 → redirect to login
+// Handle 401 → paksa logout total biar gak loop login-logout.
+// Wajib lewat auth.clear() supaya snapshot pinia-persist ('portal-auth') juga
+// ke-reset. Kalau cuma hapus 'portal_token' manual, plugin persist tetap
+// rehidrasi token expired → router anggap masih login → API 401 lagi → ∞ loop.
+let isLoggingOut = false;
 api.interceptors.response.use(
     (response) => response,
     (error) => {
         if (error.response?.status === 401 && !window.location.pathname.includes('/login')) {
-            localStorage.removeItem('portal_token');
-            localStorage.removeItem('portal_customer');
-            window.location.href = '/login';
+            if (!isLoggingOut) {
+                isLoggingOut = true;
+                try {
+                    useAuthStore().clear();
+                } catch (_) {
+                    // pinia belum ready (saat app init) → fallback hapus manual
+                    localStorage.removeItem('portal_token');
+                    localStorage.removeItem('portal_customer');
+                    localStorage.removeItem('portal-auth');
+                }
+                window.location.href = '/login';
+            }
         }
         return Promise.reject(error);
     }
